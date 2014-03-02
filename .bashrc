@@ -33,17 +33,17 @@ fi
 
     agrep()
     {
-      egrep -r -i --color=always --binary-files=without-match "$@" . | less -r
+      fgrep -r -i --color=always --binary-files=without-match "$@" . | less -r
     }
 
     cgrep()
     {
-        egrep -r -i --color=always --include=*.[hc] "$@" . | less -r
+        fgrep -r -i --color=always --include=*.{c,cc,cpp,h,cpp} "$@" . | less -r
     }
 
     hgrep()
     {
-        egrep -r -i --color=always --include=*.h "$@" . | less -r
+        fgrep -r -i --color=always --include=*.{h,hpp} "$@" . | less -r
     }
 
     export MANPAGER="col -b | view -c 'set ft=man nomod nolist' -"
