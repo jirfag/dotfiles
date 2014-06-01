@@ -13,14 +13,13 @@ fi
     export LC_ALL=en_US
     export LANG=en_US
     export PATH=~/bin/:$PATH
-    export GIT_PAGER=less
+    export GIT_PAGER='less -r'
 
     alias gs='git status'
     alias ga='git commit -a --amend'
     alias gb='git branch '
     alias gc='git checkout --force'
     alias gd='git diff'
-    alias gl='git log -p '
     alias ll='ls -l -a'
     alias tmux='TERM=screen-256color-bce tmux -2'
     alias vim='vim -c "e ++ff=unix"'
@@ -31,23 +30,27 @@ fi
 
     md() { mkdir -p "$@" && cd "$@"; }
 
+    gl()
+    {
+        git log -p --color=always $@ | less -r
+    }
+
     agrep()
     {
-      fgrep -r -i --color=always --binary-files=without-match "$@" . | less -r
+      fgrep -r -i --color=always --binary-files=without-match --exclude="*/tags" "$@" . | less -r
     }
 
     cgrep()
     {
-        fgrep -r -i --color=always --include=*.{c,cc,cpp,h,cpp} "$@" . | less -r
+        fgrep -r -i --color=always --include="*.{c,cc,cpp,h,cpp}" "$@" . | less -r
     }
 
     hgrep()
     {
-        fgrep -r -i --color=always --include=*.{h,hpp} "$@" . | less -r
+        fgrep -r -i --color=always --include="*.{h,hpp}" "$@" . | less -r
     }
 
     export MANPAGER="col -b | view -c 'set ft=man nomod nolist' -"
-    export GIT_PAGER="less"
 
     # Set git autocompletion and PS1 integration
    if [ -f /etc/bash_completion.d/git ]; then
