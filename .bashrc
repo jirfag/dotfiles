@@ -13,14 +13,13 @@ fi
     export LC_ALL=ru_RU.UTF8
     export LANG=ru_RU.UTF8
     export PATH=~/bin/:$PATH
-    export GIT_PAGER=less
+    export GIT_PAGER='less -r'
 
     alias gs='git status'
     alias ga='git commit -a --amend'
     alias gb='git branch '
     alias gc='git checkout --force'
     alias gd='git diff'
-    alias gl='git log -p --stat'
     alias gbl='git blame'
     alias gf='git fetch -p'
     alias gp='git pull origin'
@@ -38,11 +37,13 @@ fi
     agrep()
     {
       egrep -r -i --exclude=tags --color=always --exclude=./tags --binary-files=without-match "$@" . | less -r
+#fgrep -r -i --color=always --binary-files=without-match --exclude="*/tags" "$@" . | less -r
     }
 
     cgrep()
     {
         egrep -r -i --color=always --include="*.[hc]" "$@" . | less -r
+#fgrep -r -i --color=always --include="*.{c,cc,cpp,h,cpp}" "$@" . | less -r
     }
 
     cppgrep()
@@ -56,9 +57,21 @@ fi
         egrep -r -i --color=always --include="*.hpp" "$@" . | less -r
     }
 
+    md() { mkdir -p "$@" && cd "$@"; }
+
+    gl()
+    {
+        git log -p --color=always $@ | less -r
+    }
+
+    agrep()
+    {
+    }
+
     hgrep()
     {
         egrep -r -i --color=always --include=*.h "$@" . | less -r
+#fgrep -r -i --color=always --include="*.{h,hpp}" "$@" . | less -r
     }
     
     xsgrep()
@@ -77,7 +90,6 @@ fi
     }
 
     export MANPAGER="col -b | view -c 'set ft=man nomod nolist' -"
-    export GIT_PAGER="less"
 
     # Set git autocompletion and PS1 integration
    if [ -f /etc/bash_completion.d/git ]; then
@@ -89,7 +101,7 @@ fi
          . /opt/local/etc/bash_completion
      fi
 
-     PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
-
-export AR=2;
-export PATH=$PATH:/usr/local/bin
+#export AR=2;
+#export PATH=$PATH:/usr/local/bin
+     PS1="\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]($(git branch | awk '{ print $2; }'))\[\033[00m\]\$ "
+#PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
