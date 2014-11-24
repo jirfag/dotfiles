@@ -1,6 +1,17 @@
 let vim_mode = "SPACES"
 
-"let vim_mode = "TABS"
+let vim_mode = "TABS"
+
+"au Filetype python let vim_mode = "SPACES"
+"au Filetype c let vim_mode = "TABS"
+
+
+
+"map <C-E> <Esc>:set expandtab tabstop=4 shiftwidth=4<CR>
+"map <C-W> <Esc>:set noexpandtab tabstop=8 shiftwidth=8<CR>
+
+set list
+set listchars=tab:..
 
 highlight ExtraWhitespace ctermbg=red guibg=dark
 match ExtraWhitespace /\s\+$/
@@ -8,10 +19,7 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 match ExtraWhitespace /[^\t]\zs\t\+/
 let c_space_errors = 1
 
-set foldmethod=syntax
-
-set list
-set listchars=tab:..
+"set foldmethod=syntax
 
 if vim_mode == "SPACES"
 match ExtraWhitespace /\s\+$\| \+\ze\t/
@@ -25,11 +33,11 @@ set shiftwidth=8
 endif
 
 " vundle
-set nocompatible
-filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-filetype plugin indent on
+"filetype plugin indent on
+set nocompatible
+filetype on
 filetype plugin on
 
 set wildmode=longest,list,full
@@ -37,10 +45,17 @@ set wildmenu
 
 " vundle plugins
 
-"Bundle 'Rip-Rip/clang_complete'
-
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
 Bundle 'vim-scripts/L9'
-Bundle 'vim-scripts/AutoComplPop'
+Bundle 'honza/vim-snippets'
+
+"Bundle 'Rip-Rip/clang_complete'
+Bundle "garbas/vim-snipmate"
+"Bundle 'vim-scripts/AutoComplPop'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+"Bundle 'davidhalter/jedi-vim'
 
 " Solarized theme
 Bundle 'altercation/vim-colors-solarized'
@@ -51,62 +66,16 @@ colorscheme solarized
 
 Bundle 'endel/vim-github-colorscheme'
 
-Bundle 'osyo-manga/neocomplcache-clang_complete'
-
 Bundle 'gmarik/vundle'
-Bundle 'honza/vim-snippets'
-" Universal autocompletion plugin
-Bundle 'Shougo/neocomplcache'
 
-Bundle 'ervandew/supertab'
-
-" Snippets for neocomplcache
-Bundle 'Shougo/neosnippet'
+"Bundle 'Valloric/YouCompleteMe'
+Bundle 'vim-scripts/taglist.vim'
 
 " Various signs on lines
 Bundle 'tomtom/quickfixsigns_vim'
-" vundle --
 
-" Neocomplcache
-" Launches neocomplcache automatically on vim startup.
-"let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-"let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underscore completion.
-"let g:neocomplcache_enable_underbar_completin = 1
-" Sets minimum char length of syntax keyword.
-"let g:neocomplcache_min_syntax_length = 3
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Neosnippet
-" Enables snipmate-snippets compatibility
-"let g:neosnippet#enable_snipmate_compatibility = 1
-" Tell Neosnippet about the other snippets
-"let g:neosnippet#snippets_directory = '~/.vim/bundle/vim-snippets/snippets'
-
-" use neocomplcache & clang_complete
-"let g:neocomplcache_force_overwrite_completefunc = 1
-let g:clang_complete_auto = 1
-
-"let g:clang_user_options='|| exit 0'
-let g:clang_auto_select = 1
-"let g:clang_complete_auto = 1
-"let g:clang_complete_copen = 1
-"let g:clang_hl_errors = 1
-"let g:clang_periodic_quickfix = 1
-let g:clang_snippets = 1
-let g:clang_snippets_engine = 'clang_complete'
-let g:clang_conceal_snippets = 1
-"let g:clang_trailing_placeholder = 1
-"let g:clang_close_preview = 1
-let g:clang_use_library = 1
-let g:clang_library_path = '/usr/lib64/llvm'
-"let g:clang_complete_macros = 1
-let g:clang_complete_patterns = 1
-
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><s-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 if filereadable("Makefile")
 set makeprg=make
@@ -123,8 +92,7 @@ syntax on
 set bs=2
 
 set number
-set autoindent
-set cindent
+set cin
 set showmatch
 
 set ignorecase
@@ -134,19 +102,16 @@ set hlsearch
 
 
 set tags=tags
-map <F12> :!ctags -R *<CR>
 map <C-p> :exec("tag ".expand("<cword>"))<CR>
+map <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <C-'> :YcmCompleter GoToDeclaration<CR>
 
 map <C-v> :call g:ClangUpdateQuickFix()<CR>:copen<CR>
 
 au! BufWritePost $MYVIMRC source %
 
-set completeopt=menuone,menu ",longest,preview
-set nocp
-filetype plugin on
 
-
-set statusline=%F%m%r%h%w\ [%04l,%04v][%p%%]
+set statusline=%F%m%r%h%w\ [%04l,%04v,off=%o][%p%%]
 hi StatusLine gui=reverse cterm=reverse
 set laststatus=2 " всегда показывать строку состояния
 
@@ -172,3 +137,35 @@ nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
 "
 " " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+
+"NERD tree config
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrows=0
+
+"set termencoding=utf-8
+"set fileencodings=utf8,cp1251
+"set encoding=utf8
+"
+"
+
+"set conceallevel=2
+"set concealcursor=vin
+"
+" " Complete options (disable preview scratch window, longest removed to aways
+" " show menu)
+set completeopt=menu,menuone
+"
+" " Limit popup menu height
+set pumheight=20
+"
+let g:syntastic_enable_signs=1
+
+map <C-m> :TlistToggle<CR> <C-w><C-w>
+let g:snippets_dir='~/.vim/bundle/vim-snippets/snippets/'
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<CR>']
+let g:ycm_confirm_extra_conf = 0
+
+set path+=core/src
+set path+=core/include
+set path+=capron/src
+set path+=capron/include

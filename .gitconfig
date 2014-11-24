@@ -2,7 +2,7 @@
 	email = d.isaev@corp.mail.ru
 	name = Denis Isaev
 [core]
-    autocrlf = input
+	autocrlf = false
     safecrlf = false
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
     pager=more
