@@ -64,10 +64,6 @@ fi
         git log -p --color=always $@ | less -r
     }
 
-    agrep()
-    {
-    }
-
     hgrep()
     {
         egrep -r -i --color=always --include=*.h "$@" . | less -r
