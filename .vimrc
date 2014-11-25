@@ -1,6 +1,6 @@
 let vim_mode = "SPACES"
 
-let vim_mode = "TABS"
+"let vim_mode = "TABS"
 
 "au Filetype python let vim_mode = "SPACES"
 "au Filetype c let vim_mode = "TABS"

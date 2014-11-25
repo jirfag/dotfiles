@@ -1,5 +1,6 @@
 
 # .bashrc
+source ~/.git-prompt.sh
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -97,7 +98,5 @@ fi
          . /opt/local/etc/bash_completion
      fi
 
-#export AR=2;
-#export PATH=$PATH:/usr/local/bin
-     PS1="\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]($(git branch | awk '{ print $2; }'))\[\033[00m\]\$ "
-#PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+#PS1="\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]($(git branch | awk '{ print $2; }'))\[\033[00m\]\$ "
+PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
