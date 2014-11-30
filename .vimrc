@@ -32,9 +32,9 @@ set tabstop=8
 set shiftwidth=8
 endif
 
-" vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
 "filetype plugin indent on
 set nocompatible
 filetype on
@@ -58,11 +58,11 @@ Bundle 'scrooloose/syntastic'
 "Bundle 'davidhalter/jedi-vim'
 
 " Solarized theme
-Bundle 'altercation/vim-colors-solarized'
+"Bundle 'altercation/vim-colors-solarized'
 syntax enable
-set t_Co=256
-let g:solarized_termcolors=256
-colorscheme solarized
+"set t_Co=256
+"let g:solarized_termcolors=256
+"colorscheme solarized
 
 Bundle 'endel/vim-github-colorscheme'
 
