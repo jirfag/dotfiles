@@ -100,3 +100,4 @@ fi
 
 #PS1="\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]($(git branch | awk '{ print $2; }'))\[\033[00m\]\$ "
 PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+export PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/d.isaev/bin:/usr/local/git/bin
