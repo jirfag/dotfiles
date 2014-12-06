@@ -24,7 +24,7 @@ fi
     alias gbl='git blame'
     alias gf='git fetch -p'
     alias gp='git pull origin'
-    alias ll='ls -l -a'
+    alias ll='ls -lah'
     alias tmux='TERM=screen-256color-bce tmux -2'
     alias vim='vim -c "e ++ff=unix"'
     alias less='less -r'
