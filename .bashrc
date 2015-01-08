@@ -62,7 +62,7 @@ fi
 
     gl()
     {
-        git log -p --color=always $@ | less -r
+        git log --stat -p --color=always $@ | less -r
     }
 
     hgrep()
