@@ -169,5 +169,3 @@ set path+=core/src
 set path+=core/include
 set path+=capron/src
 set path+=capron/include
-
-set iskeyword-=_
