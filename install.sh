@@ -15,4 +15,6 @@ if [ ! -d "$VUNLDE_INST_DIR" ]; then
     echo "install Vundle"
     git clone https://github.com/gmarik/Vundle.vim.git $VUNLDE_INST_DIR
     vim +PluginInstall +qall
+    mkdir -p ~/.vim/colors
+    ln ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
 fi

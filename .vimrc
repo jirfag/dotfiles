@@ -59,10 +59,16 @@ Bundle 'scrooloose/syntastic'
 
 " Solarized theme
 "Bundle 'altercation/vim-colors-solarized'
+
+Bundle 'altercation/vim-colors-solarized'
+" New line!!
+
+
 syntax enable
-"set t_Co=256
-"let g:solarized_termcolors=256
-"colorscheme solarized
+set t_Co=256
+let g:solarized_termcolors=256
+colorscheme solarized
+set background=dark
 
 Bundle 'endel/vim-github-colorscheme'
 
@@ -121,8 +127,6 @@ imap <C-left> <ESC>:tabprevious<cr>i
 map <C-right> :tabnext<cr>
 nmap <C-right> :tabnext<cr>
 imap <C-right> <ESC>:tabnext<cr>i
-
-set background=dark
 
 " Handle tmux $TERM quirks in vim
 if $TERM =~ '^screen-256color'
