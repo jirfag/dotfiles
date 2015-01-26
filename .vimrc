@@ -148,7 +148,7 @@ let g:NERDTreeDirArrows=0
 
 "set termencoding=utf-8
 "set fileencodings=utf8,cp1251
-"set encoding=utf8
+set encoding=utf8
 "
 "
 
