@@ -5,8 +5,6 @@ let vim_mode = "SPACES"
 "au Filetype python let vim_mode = "SPACES"
 "au Filetype c let vim_mode = "TABS"
 
-
-
 "map <C-E> <Esc>:set expandtab tabstop=4 shiftwidth=4<CR>
 "map <C-W> <Esc>:set noexpandtab tabstop=8 shiftwidth=8<CR>
 
@@ -32,37 +30,30 @@ set tabstop=8
 set shiftwidth=8
 endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-"filetype plugin indent on
-set nocompatible
-filetype on
-filetype plugin on
 
 set wildmode=longest,list,full
 set wildmenu
+"filetype plugin indent on
+set nocompatible
+filetype off
 
-" vundle plugins
-
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle 'vim-scripts/L9'
-Bundle 'honza/vim-snippets'
-
-"Bundle 'Rip-Rip/clang_complete'
-Bundle "garbas/vim-snipmate"
-"Bundle 'vim-scripts/AutoComplPop'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-"Bundle 'davidhalter/jedi-vim'
-
-" Solarized theme
-"Bundle 'altercation/vim-colors-solarized'
-
-Bundle 'altercation/vim-colors-solarized'
-" New line!!
-
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'vim-scripts/L9'
+Plugin 'honza/vim-snippets'
+Plugin 'tpope/vim-surround'
+Plugin 'garbas/vim-snipmate'
+Plugin 'scrooloose/syntastic'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'gmarik/vundle'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'tomtom/quickfixsigns_vim'
+Plugin 'Valloric/YouCompleteMe'
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 syntax enable
 set t_Co=256
@@ -70,18 +61,7 @@ let g:solarized_termcolors=256
 colorscheme solarized
 set background=dark
 
-Bundle 'endel/vim-github-colorscheme'
-
-Bundle 'gmarik/vundle'
-
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'vim-scripts/taglist.vim'
-
-" Various signs on lines
-Bundle 'tomtom/quickfixsigns_vim'
-
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 
 if filereadable("Makefile")
 set makeprg=make
@@ -142,12 +122,8 @@ nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
 " " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
-"NERD tree config
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrows=0
-
-"set termencoding=utf-8
-"set fileencodings=utf8,cp1251
+set termencoding=utf-8
+set fileencodings=utf8,cp1251
 set encoding=utf8
 "
 "
@@ -173,3 +149,5 @@ set path+=core/src
 set path+=core/include
 set path+=capron/src
 set path+=capron/include
+
+let g:surround_45 = "{% trans \"\r\" %}"
