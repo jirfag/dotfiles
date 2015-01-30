@@ -14,7 +14,7 @@ fi
     export LC_ALL=ru_RU.UTF8
     export LANG=ru_RU.UTF8
     export PATH=~/bin/:$PATH
-    export GIT_PAGER='less -r'
+    export GIT_PAGER='less -ri'
 
     alias gs='git status'
     alias ga='git commit -a --amend'
@@ -27,7 +27,7 @@ fi
     alias ll='ls -lah'
     alias tmux='TERM=screen-256color-bce tmux -2'
     alias vim='vim -c "e ++ff=unix"'
-    alias less='less -r'
+    alias less='less -ri'
     alias pr='ps waux | grep'
     alias gtree='git log --graph --full-history --all --color --pretty=format:"%x1b[33m%h%x09%x09%x1b[32m%d%x1b[0m %x1b[34m%an%x1b[0m   %s" "$@"'
     alias fb='git branch -a | grep -i'
@@ -37,48 +37,48 @@ fi
 
     agrep()
     {
-      egrep -r -i --exclude=tags --color=always --exclude=./tags --binary-files=without-match "$@" . | less -r
-#fgrep -r -i --color=always --binary-files=without-match --exclude="*/tags" "$@" . | less -r
+      egrep -r -i --exclude=tags --color=always --exclude=./tags --binary-files=without-match "$@" . | less -ri
+#fgrep -r -i --color=always --binary-files=without-match --exclude="*/tags" "$@" . | less -ri
     }
 
     cgrep()
     {
-        egrep -r -i --color=always --include="*.[hc]" "$@" . | less -r
-#fgrep -r -i --color=always --include="*.{c,cc,cpp,h,cpp}" "$@" . | less -r
+        egrep -r -i --color=always --include="*.[hc]" "$@" . | less -ri
+#fgrep -r -i --color=always --include="*.{c,cc,cpp,h,cpp}" "$@" . | less -ri
     }
 
     cppgrep()
     {
-        egrep -r -i --color=always --include="*.[hc]pp" "$@" . | less -r
+        egrep -r -i --color=always --include="*.[hc]pp" "$@" . | less -ri
     }
 
 
     hppgrep()
     {
-        egrep -r -i --color=always --include="*.hpp" "$@" . | less -r
+        egrep -r -i --color=always --include="*.hpp" "$@" . | less -ri
     }
 
     md() { mkdir -p "$@" && cd "$@"; }
 
     gl()
     {
-        git log --stat -p --color=always $@ | less -r
+        git log --stat -p --color=always $@ | less -ri
     }
 
     hgrep()
     {
-        egrep -r -i --color=always --include=*.h "$@" . | less -r
-#fgrep -r -i --color=always --include="*.{h,hpp}" "$@" . | less -r
+        egrep -r -i --color=always --include=*.h "$@" . | less -ri
+#fgrep -r -i --color=always --include="*.{h,hpp}" "$@" . | less -ri
     }
     
     xsgrep()
     {
-        egrep -r -i --color=always --include=*.xs "$@" . | less -r
+        egrep -r -i --color=always --include=*.xs "$@" . | less -ri
     }
 
     pmgrep()
     {
-        egrep -r -i --color=always --include=*.p[lm] "$@" . | less -r
+        egrep -r -i --color=always --include=*.p[lm] "$@" . | less -ri
     }
     
     ggrep()
