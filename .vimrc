@@ -12,7 +12,6 @@ set list
 set listchars=tab:..
 
 highlight ExtraWhitespace ctermbg=red guibg=dark
-match ExtraWhitespace /\s\+$/
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 match ExtraWhitespace /[^\t]\zs\t\+/
 let c_space_errors = 1
@@ -90,6 +89,7 @@ set hlsearch
 set tags=tags
 map <C-p> :exec("tag ".expand("<cword>"))<CR>
 map <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <C-t> <C-o>
 map <C-'> :YcmCompleter GoToDeclaration<CR>
 
 map <C-v> :call g:ClangUpdateQuickFix()<CR>:copen<CR>
@@ -151,3 +151,5 @@ set path+=capron/src
 set path+=capron/include
 
 let g:surround_45 = "{% trans \"\r\" %}"
+let g:ycm_collect_identifiers_from_tags_files = 1
+highlight ExtraWhitespace ctermbg=red guibg=dark
