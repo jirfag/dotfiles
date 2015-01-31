@@ -86,7 +86,7 @@ fi
         git grep -i "$@"
     }
 
-    export MANPAGER="col -b | view -c 'set ft=man nomod nolist' -"
+    export MANPAGER="sh -c \"col -b | view -c 'set ft=man nomod nolist titlestring=MANPAGE' -\""
 
     # Set git autocompletion and PS1 integration
    if [ -f /etc/bash_completion.d/git ]; then
