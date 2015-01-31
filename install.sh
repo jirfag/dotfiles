@@ -27,3 +27,5 @@ if [ ! "$(ls -A ~/.vim/bundle/YouCompleteMe)" ]; then
     cd ~/.vim/bundle/YouCompleteMe
     ./install.sh --clang-completer
 fi
+
+sudo npm install -g jslint # for syntastic for vim
