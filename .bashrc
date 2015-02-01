@@ -33,6 +33,11 @@ fi
     alias fb='git branch -a | grep -i'
     alias last='ls -l -a -t | head -n'
 
+    pstrace()
+    {
+        ps auxw | fgrep -i "$1" | awk '{print"-p " $2}' | xargs sudo strace -v -ttt -f ${*:2} 2>&1
+    }
+
     md() { mkdir -p "$@" && cd "$@"; }
 
     agrep()
