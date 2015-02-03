@@ -91,6 +91,14 @@ fi
         git grep -i "$@"
     }
 
+    run() {
+        number=$1
+        shift
+        for i in `seq $number`; do
+            $@
+        done
+    }
+
     export MANPAGER="sh -c \"col -b | view -c 'set ft=man nomod nolist titlestring=MANPAGE' -\""
 
     # Set git autocompletion and PS1 integration
