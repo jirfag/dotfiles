@@ -85,7 +85,7 @@ fi
     {
         egrep -r -i --color=always --include=*.p[lm] "$@" . | less -ri
     }
-    
+
     ggrep()
     {
         git grep -i "$@"
@@ -95,7 +95,8 @@ fi
         number=$1
         shift
         for i in `seq $number`; do
-            $@
+            echo "$i: '$@'"
+            $@ || break
         done
     }
 
