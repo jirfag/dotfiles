@@ -30,4 +30,4 @@ fi
 
 sudo npm install -g jslint # for syntastic for vim
 mkdir -p ~/bin
-ln get_tmux_status.sh bin/get_tmux_status.sh
+ln get_tmux_status.sh ~/bin/get_tmux_status.sh
