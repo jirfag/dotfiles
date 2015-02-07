@@ -5,8 +5,23 @@ let vim_mode = "TABS"
 "au Filetype python let vim_mode = "SPACES"
 "au Filetype c let vim_mode = "TABS"
 
-"map <C-E> <Esc>:set expandtab tabstop=4 shiftwidth=4<CR>
-"map <C-W> <Esc>:set noexpandtab tabstop=8 shiftwidth=8<CR>
+map <C-E> <Esc>:call SetSpaces()<CR>
+map <C-W> <Esc>:call SetTabs()<CR>
+
+function! SetTabs()
+	match ExtraWhitespace /^\t*\zs \+/
+	set tabstop=8
+	set shiftwidth=8
+	highlight ExtraWhitespace ctermbg=red guibg=dark
+endfunction
+
+function! SetSpaces()
+	match ExtraWhitespace /\s\+$\| \+\ze\t/
+	set expandtab
+	set tabstop=4
+	set shiftwidth=4
+	highlight ExtraWhitespace ctermbg=red guibg=dark
+endfunction
 
 set list
 set listchars=tab:..
@@ -19,14 +34,9 @@ let c_space_errors = 1
 "set foldmethod=syntax
 
 if vim_mode == "SPACES"
-match ExtraWhitespace /\s\+$\| \+\ze\t/
-set expandtab
-set tabstop=4
-set shiftwidth=4
+	call SetSpaces()
 else
-match ExtraWhitespace /^\t*\zs \+/
-set tabstop=8
-set shiftwidth=8
+	call SetTabs()
 endif
 
 
