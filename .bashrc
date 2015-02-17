@@ -35,7 +35,15 @@ fi
 
     pstrace()
     {
-        ps auxw | fgrep -i "$1" | awk '{print"-p " $2}' | xargs sudo strace -v -ttt -f ${*:2} 2>&1
+        ps auxw | fgrep -i "$1" | fgrep -v "fgrep" | awk '{print"-p " $2}' | xargs sudo strace -v -ttt -f ${*:2} 2>&1
+    }
+
+    num_sum() {
+        awk '{ sum += $1 } END { if (NR > 0) print sum / NR }'
+    }
+
+    num_median() {
+        sort -n | awk '{ a[i++]=$1; } END { print a[int(i/2)]; }'
     }
 
     md() { mkdir -p "$@" && cd "$@"; }

@@ -6,7 +6,7 @@ let vim_mode = "TABS"
 "au Filetype c let vim_mode = "TABS"
 
 map <C-E> <Esc>:call SetSpaces()<CR>
-map <C-W> <Esc>:call SetTabs()<CR>
+map <C-Y> <Esc>:call SetTabs()<CR>
 
 function! SetTabs()
 	match ExtraWhitespace /^\t*\zs \+/
@@ -70,7 +70,7 @@ let g:solarized_termcolors=256
 colorscheme solarized
 set background=dark
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 if filereadable("Makefile")
 set makeprg=make
