@@ -47,7 +47,7 @@ fi
     }
 
     num_avg_median() {
-        sort -n | awk '{ a[i++]=$1; sum += $1; } END { print "median: " a[int(i/2)] ", avg: " sum / NR ", n: " NR; }'
+        sort -n | awk '{ a[i++]=$1; sum += $1; } END {for(x=1;x<=NR;x++){sumsq+=((a[x]-(sum/NR))**2);}} END { print "median: " a[int(i/2)] ", avg: " sum / NR ", n: " NR ", stdev: " sqrt(sumsq/NR) }'
     }
 
     md() { mkdir -p "$@" && cd "$@"; }
