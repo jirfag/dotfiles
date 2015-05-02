@@ -17,7 +17,7 @@ fi
     export GIT_PAGER='less -ri'
 
     alias gs='git status'
-    alias ga='git commit -a --amend'
+    alias gad='git add'
     alias gb='git branch '
     alias gc='git checkout --force'
     alias gd='git diff'
@@ -31,11 +31,16 @@ fi
     alias pr='ps waux | grep'
     alias gtree='git log --graph --full-history --all --color --pretty=format:"%x1b[33m%h%x09%x09%x1b[32m%d%x1b[0m %x1b[34m%an%x1b[0m   %s" "$@"'
     alias fb='git branch -a | grep -i'
-    alias last='ls -l -a -t | head -n'
+    alias last_n='ls -lath | head'
 
     pstrace()
     {
         ps auxw | fgrep -i "$1" | fgrep -v "fgrep" | awk '{print"-p " $2}' | xargs sudo strace -v -ttt -f ${*:2} 2>&1
+    }
+
+    hdump()
+    {
+        hexdump -C $1 | less
     }
 
     num_avg() {
@@ -127,3 +132,4 @@ fi
 #PS1="\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]($(git branch | awk '{ print $2; }'))\[\033[00m\]\$ "
 PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 export PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/d.isaev/bin:/usr/local/git/bin
+ulimit -c unlimited

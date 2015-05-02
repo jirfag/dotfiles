@@ -10,6 +10,7 @@ map <C-Y> <Esc>:call SetTabs()<CR>
 
 function! SetTabs()
 	match ExtraWhitespace /^\t*\zs \+/
+	set noexpandtab
 	set tabstop=8
 	set shiftwidth=8
 	highlight ExtraWhitespace ctermbg=red guibg=dark
@@ -62,7 +63,7 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'tomtom/quickfixsigns_vim'
 Plugin 'Valloric/YouCompleteMe'
 call vundle#end()            " required
-filetype plugin indent on    " required
+"filetype plugin indent on    " required
 
 syntax enable
 set t_Co=256
