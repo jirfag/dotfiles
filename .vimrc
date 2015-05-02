@@ -1,18 +1,22 @@
 let vim_mode = "SPACES"
 
-let vim_mode = "TABS"
+"let vim_mode = "TABS"
 
 "au Filetype python let vim_mode = "SPACES"
 "au Filetype c let vim_mode = "TABS"
 
-map <C-E> <Esc>:call SetSpaces()<CR>
-map <C-Y> <Esc>:call SetTabs()<CR>
+filetype plugin on
+autocmd Filetype htmldjango call SetTabs(2)
+"autocmd Filetype htmldjango set ts=2 sw=2
 
-function! SetTabs()
+map <C-E> <Esc>:call SetSpaces()<CR>
+map <C-Y> <Esc>:call SetTabs(8)<CR>
+
+function! SetTabs(tab_len)
 	match ExtraWhitespace /^\t*\zs \+/
+	let &tabstop = a:tab_len
+	let &shiftwidth = a:tab_len
 	set noexpandtab
-	set tabstop=8
-	set shiftwidth=8
 	highlight ExtraWhitespace ctermbg=red guibg=dark
 endfunction
 
@@ -37,7 +41,7 @@ let c_space_errors = 1
 if vim_mode == "SPACES"
 	call SetSpaces()
 else
-	call SetTabs()
+	call SetTabs(8)
 endif
 
 
