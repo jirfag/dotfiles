@@ -1,8 +1,6 @@
 let vim_mode = "SPACES"
-
 "let vim_mode = "TABS"
 
-"au Filetype python let vim_mode = "SPACES"
 "au Filetype c let vim_mode = "TABS"
 
 filetype plugin on
@@ -176,3 +174,4 @@ set path+=capron/include
 let g:surround_45 = "{% trans \"\r\" %}"
 let g:ycm_collect_identifiers_from_tags_files = 1
 highlight ExtraWhitespace ctermbg=red guibg=dark
+au VimEnter * if &diff | execute 'windo set wrap' | endif

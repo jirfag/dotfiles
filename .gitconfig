@@ -46,3 +46,5 @@
         untracked = cyan
 [diff]
     renames = copy
+[merge]
+	conflictstyle = diff3
