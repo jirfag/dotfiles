@@ -34,8 +34,7 @@ fi
 if [ -f ~/.vim/bundle/YouCompleteMe/install.sh ]; then
     if ! grep -q ycm $STATUS_FILE; then
         echo "install YCM core"
-        cd ~/.vim/bundle/YouCompleteMe
-        ./install.sh --clang-completer
+        (cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer)
         echo ycm >>$STATUS_FILE
     fi
 fi
