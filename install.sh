@@ -20,7 +20,7 @@ fi
 
 if echo "$(uname -a)" | grep -qi ubuntu; then
     echo "install ubuntu packages"
-    CMD="sudo apt-get install -y vim exuberant-ctags npm build-essential cmake python-dev"
+    CMD="sudo apt-get install -y vim exuberant-ctags npm build-essential cmake python-dev clang-3.7 libclang-3.7-dev"
     eval $CMD || { sudo apt-get update; eval $CMD; }
 fi
 
@@ -34,7 +34,7 @@ fi
 if [ -f ~/.vim/bundle/YouCompleteMe/install.sh ]; then
     if ! grep -q ycm $STATUS_FILE; then
         echo "install YCM core"
-        (cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer)
+        (cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer --system-libclang)
         echo ycm >>$STATUS_FILE
     fi
 fi
