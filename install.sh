@@ -20,7 +20,7 @@ fi
 
 if echo "$(uname -a)" | grep -qi ubuntu; then
     echo "install ubuntu packages"
-    CMD="sudo apt-get install -y exuberant-ctags npm build-essential cmake python-dev"
+    CMD="sudo apt-get install -y vim exuberant-ctags npm build-essential cmake python-dev"
     eval $CMD || { sudo apt-get update; eval $CMD; }
 fi
 
