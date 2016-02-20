@@ -1,9 +1,9 @@
 STATUS_FILE="./status.txt"
 
 function inst() {
-    test -f ~/$1 && rm -f ~/$1.bak && mv ~/$1 ~/$1.bak
-    ln $1 ~/$1
     echo "ln $1 ~/$1"
+    test -f ~/$1 && rm -f ~/$1.bak && mv ~/$1 ~/$1.bak
+    ln $1 ~/$1 || { echo "can't do ln"; exit 1; }
 }
 
 inst .bashrc
@@ -20,11 +20,11 @@ fi
 
 if echo "$(uname -a)" | grep -qi ubuntu; then
     echo "install ubuntu packages"
-    CMD="sudo apt-get install -y exuberant-ctags npm build-essential cmake python-dev"
+    CMD="sudo apt-get install -y vim exuberant-ctags npm build-essential cmake python-dev clang-3.7 libclang-3.7-dev"
     eval $CMD || { sudo apt-get update; eval $CMD; }
 fi
 
-vim +PluginInstall +qall
+vim +PluginInstall +qall || { echo "can't install vim plugins"; exit 1; }
 
 if [ ! -f ~/.vim/colors/solarized.vim ]; then
     mkdir -p ~/.vim/colors
@@ -34,11 +34,16 @@ fi
 if [ -f ~/.vim/bundle/YouCompleteMe/install.sh ]; then
     if ! grep -q ycm $STATUS_FILE; then
         echo "install YCM core"
-        (cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer)
+        (cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer --system-libclang)
         echo ycm >>$STATUS_FILE
     fi
+else
+    echo "YCM wasn't installed"
+    exit 1
 fi
 
-sudo npm install -g jslint # for syntastic for vim
+echo "install jslint..."
+npm list -g jslint || sudo npm install -g jslint # for syntastic for vim
+
 sudo rm -f /usr/bin/get_tmux_status.sh
 sudo ln ./get_tmux_status.sh /usr/bin/get_tmux_status.sh

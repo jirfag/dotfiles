@@ -58,7 +58,7 @@ Plugin 'vim-scripts/L9'
 "Plugin 'tpope/vim-surround'
 "Plugin 'garbas/vim-snipmate'
 Plugin 'scrooloose/syntastic'
-"Plugin 'endel/vim-github-colorscheme'
+Plugin 'endel/vim-github-colorscheme'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/taglist.vim'
@@ -70,8 +70,9 @@ filetype plugin indent on    " required
 syntax enable
 set t_Co=256
 let g:solarized_termcolors=256
-colorscheme solarized
-set background=dark
+colorscheme github
+"colorscheme solarized
+"set background=dark
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
