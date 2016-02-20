@@ -30,7 +30,8 @@ fi
     alias less='less -ri'
     alias pr='ps waux | grep'
     alias gtree='git log --graph --full-history --all --color --pretty=format:"%x1b[33m%h%x09%x09%x1b[32m%d%x1b[0m %x1b[34m%an%x1b[0m   %s" "$@"'
-    alias fb='git branch -a | grep -i'
+    alias fb='git branch -a | egrep -i'
+    alias ft='git tag | egrep -i'
     alias last_n='ls -lath | head'
 
     pstrace()
