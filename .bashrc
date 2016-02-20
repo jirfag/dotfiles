@@ -84,7 +84,12 @@ fi
 
     gl()
     {
-        git log --stat -p --color=always $@ | less -ri
+        git log --decorate=full --stat --color=always $@ | less -ri
+    }
+
+    glp()
+    {
+        git log --decorate=full --stat -p --color=always $@ | less -ri
     }
 
     hgrep()
