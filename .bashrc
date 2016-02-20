@@ -117,6 +117,9 @@ fi
         done
     }
 
+    transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
+        tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://t.bk.ru/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://t.bk.ru/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+
     export MANPAGER="sh -c \"col -b | view -c 'set ft=man nomod nolist titlestring=MANPAGE' -\""
 
     # Set git autocompletion and PS1 integration
