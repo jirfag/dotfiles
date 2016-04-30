@@ -14,5 +14,6 @@ inst .git-prompt.sh
 if echo "$(uname -a)" | grep -qi Darwin; then
     echo "export CLICOLOR=1" >>~/.bashrc
 else
+    source ~/.bashrc # get $LS_OPTIONS
     echo "alias ll='ls $LS_OPTIONS --color=auto'" >>~/.bashrc
 fi
