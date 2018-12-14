@@ -21,19 +21,8 @@ if [ ! -f ~/.vim/colors/solarized.vim ]; then
     ln ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
 fi
 
-if [ -f ~/.vim/bundle/YouCompleteMe/install.sh ]; then
-    if ! grep -q ycm $STATUS_FILE; then
-        echo "install YCM core"
-        (cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer --system-libclang)
-        echo ycm >>$STATUS_FILE
-    fi
-else
-    echo "YCM wasn't installed"
-    exit 1
-fi
-
 echo "install jslint..."
 npm list -g jslint || sudo npm install -g jslint # for syntastic for vim
 
-sudo rm -f /usr/bin/get_tmux_status.sh
-sudo ln ./get_tmux_status.sh /usr/bin/get_tmux_status.sh
+sudo rm -f /usr/local/bin/get_tmux_status.sh
+sudo ln ./get_tmux_status.sh /usr/local/bin/get_tmux_status.sh
