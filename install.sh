@@ -8,10 +8,12 @@ if [ ! -d "$VUNLDE_INST_DIR" ]; then
     git clone https://github.com/gmarik/Vundle.vim.git $VUNLDE_INST_DIR
 fi
 
-if echo "$(uname -a)" | grep -qi ubuntu; then
+if python -mplatform | grep -qi ubuntu; then
     echo "install ubuntu packages"
     CMD="sudo apt-get install -y vim exuberant-ctags npm build-essential cmake python-dev clang-3.7 libclang-3.7-dev"
     eval $CMD || { sudo apt-get update; eval $CMD; }
+else
+    echo "os isn't ubuntu"
 fi
 
 vim +PluginInstall +qall || { echo "can't install vim plugins"; exit 1; }
