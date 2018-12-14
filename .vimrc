@@ -63,7 +63,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'tomtom/quickfixsigns_vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
