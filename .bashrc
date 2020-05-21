@@ -1,4 +1,3 @@
-
 # .bashrc
 source ~/.git-prompt.sh
 
@@ -88,12 +87,12 @@ fi
 
     gl()
     {
-        git log --decorate=full --stat --color=always $@ | less -ri
+        git log --decorate=full --stat --show-signature --color=always $@ | less -ri
     }
 
     glp()
     {
-        git log --decorate=full --stat -p --color=always $@ | less -ri
+        git log --decorate=full --stat --show-signature -p --color=always $@ | less -ri
     }
 
     hgrep()
@@ -143,5 +142,10 @@ fi
 
 #PS1="\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]($(git branch | awk '{ print $2; }'))\[\033[00m\]\$ "
 PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
-export PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/d.isaev/bin:/usr/local/git/bin
+export PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/d.isaev/bin:/usr/local/git/bin:$HOME/go/bin
+export PATH=$PATH:/Users/denis-isaev/Library/Python/2.7/bin:/usr/local/go/bin:/Users/denis-isaev/yandex-cloud/bin
+export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
 ulimit -c unlimited
+export CLICOLOR=1
+alias executer='EXECUTER_CONF=/Users/denis-isaev/.executer.conf /usr/bin/perl /usr/local/bin/executer'
+alias psql=/Applications/Postgres.app/Contents/Versions/latest/bin/psql
