@@ -1,3 +1,5 @@
+set -x
+
 ./update_dotfiles.sh
 
 STATUS_FILE="./status.txt"
@@ -12,22 +14,30 @@ if python -mplatform | grep -qi ubuntu; then
     echo "install ubuntu packages"
     CMD="sudo apt-get install -y vim exuberant-ctags npm build-essential cmake python-dev clang-3.7 libclang-3.7-dev"
     eval $CMD || { sudo apt-get update; eval $CMD; }
+elif python -mplatform | grep -qi darwin; then
+    echo "installing mac os packages"
+    if ! fgrep -qi .bashrc ~/.bash_profile; then
+        echo 'source ~/.bashrc' >>~/.bash_profile
+    fi
+    which brew
+    if test $? -ne 0; then
+        set +x
+        bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        set -x
+    else
+        brew update
+    fi
+
+    brew install tmux
 else
     echo "os isn't ubuntu"
 fi
 
 vim +PluginInstall +qall || { echo "can't install vim plugins"; exit 1; }
 
-if [ ! -f ~/.vim/colors/solarized.vim ]; then
-    mkdir -p ~/.vim/colors
-    ln ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim
-fi
-
-echo "install jslint..."
-npm list -g jslint || sudo npm install -g jslint # for syntastic for vim
-
-sudo rm -f /usr/local/bin/get_tmux_status.sh
-sudo ln ./get_tmux_status.sh /usr/local/bin/get_tmux_status.sh
-
 git clone https://github.com/dracula/iterm.git ~/dracula-theme-iterm
 echo "Dracula theme was downloaded, use it in iTerm2 > Preferences > Profiles > Colors Tab -> Color Presets -> Import"
+
+# https://github.com/tmux-plugins/tpm
+
+test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
