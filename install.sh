@@ -41,3 +41,4 @@ echo "Dracula theme was downloaded, use it in iTerm2 > Preferences > Profiles > 
 # https://github.com/tmux-plugins/tpm
 
 test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo "Press 'CTRL+A I' in tmux to install/update tmux plugins"
