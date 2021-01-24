@@ -12,7 +12,7 @@ fi
 
 if python -mplatform | grep -qi ubuntu; then
     echo "install ubuntu packages"
-    CMD="sudo apt-get install -y vim exuberant-ctags npm build-essential cmake python-dev clang-3.7 libclang-3.7-dev"
+    CMD="sudo apt-get install -y vim exuberant-ctags build-essential cmake python-dev clang-3.7 libclang-3.7-dev"
     eval $CMD || { sudo apt-get update; eval $CMD; }
 elif python -mplatform | grep -qi darwin; then
     echo "installing mac os packages"
