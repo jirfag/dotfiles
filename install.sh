@@ -28,3 +28,6 @@ npm list -g jslint || sudo npm install -g jslint # for syntastic for vim
 
 sudo rm -f /usr/local/bin/get_tmux_status.sh
 sudo ln ./get_tmux_status.sh /usr/local/bin/get_tmux_status.sh
+
+git clone https://github.com/dracula/iterm.git ~/dracula-theme-iterm
+echo "Dracula theme was downloaded, use it in iTerm2 > Preferences > Profiles > Colors Tab -> Color Presets -> Import"
